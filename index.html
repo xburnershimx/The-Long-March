@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111411">
+<meta name="description" content="The Path — a dark-fantasy life RPG for your real-world journey.">
+<link rel="manifest" href="manifest.json">
+<title>The Path</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:wght@400;600;700&display=swap');
+:root{--bg:#101310;--panel:#191e19;--panel2:#202720;--line:#394238;--gold:#b99a62;--gold2:#e0c58c;--muted:#9a9b8e;--text:#e7e0d0;--green:#65775e;--red:#9b6257;--shadow:0 16px 50px #0008;--serif:'Crimson Text',Georgia,serif;--display:'Cinzel',Georgia,serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#354035 0,#171d18 36%,var(--bg) 75%);color:var(--text);font-family:var(--serif);font-size:18px;min-height:100vh}
+button,input,textarea,select{font:inherit}button{cursor:pointer;color:inherit}a{color:var(--gold2)}
+.app{max-width:1320px;margin:auto;padding:0 22px 100px}
+header{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff14;gap:16px}
+.brand{font-family:var(--display);letter-spacing:.22em;color:var(--gold2);font-size:20px;text-shadow:0 2px 20px #c29d5633}
+.brand small{display:block;font-family:var(--serif);font-size:11px;letter-spacing:.27em;color:var(--muted);margin-top:3px}
+.top-right{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:15px}
+.icon-btn{border:1px solid var(--line);background:#171c17;border-radius:50%;width:40px;height:40px;color:var(--gold2)}
+.hero{margin:24px 0 22px;min-height:310px;position:relative;overflow:hidden;border:1px solid #7c795b55;border-radius:5px;box-shadow:var(--shadow);background:#20271f}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#101510 0%,#101510d9 36%,#10151040 100%),linear-gradient(0deg,#101510aa,transparent 60%),url('https://images.unsplash.com/photo-1757611933690-3012dff2a62f?auto=format&fit=crop&w=2200&q=82') center 48%/cover;filter:saturate(.58)}
+.hero-content{position:relative;z-index:1;padding:40px 42px;max-width:650px}
+.eyebrow{font-family:var(--display);font-size:10px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.25}h1{font-size:clamp(30px,5vw,48px);letter-spacing:.06em;margin:12px 0}h2{font-size:22px;letter-spacing:.07em;margin:0 0 15px;color:var(--gold2)}h3{font-size:16px;letter-spacing:.05em;margin:0 0 8px;color:var(--gold2)}
+.hero p{font-size:20px;color:#d4d0c2;max-width:480px;line-height:1.45}
+.rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:22px 0;max-width:400px}
+.btn{border:1px solid #927b52;background:linear-gradient(#74613f,#4b412e);padding:10px 17px;color:#f1e4c7;font-family:var(--display);font-size:11px;letter-spacing:.12em;text-transform:uppercase;border-radius:2px;box-shadow:0 4px 15px #0005}
+.btn:hover{filter:brightness(1.18)}.btn.secondary{background:#20271f;border-color:var(--line);color:var(--text)}.btn.ghost{background:transparent;border-color:#626b59;color:var(--gold2)}.btn.danger{background:#442b27;border-color:#805149}
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.panel{background:linear-gradient(145deg,#202720ee,#171c18f2);border:1px solid var(--line);padding:20px;box-shadow:0 10px 28px #0003;min-width:0}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:15px}.panel-head h2{margin:0}
+.muted{color:var(--muted)}.small{font-size:14px}.tiny{font-size:12px}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:#111711;border:1px solid #394238;padding:13px;text-align:center}
+.stat strong{display:block;font-family:var(--display);font-size:23px;color:var(--gold2);font-weight:500}.stat span{font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.xpbar,.bar{height:7px;background:#0d100d;border:1px solid #3c4539;overflow:hidden}.xpbar>i,.bar>i{display:block;height:100%;background:linear-gradient(90deg,#697b5d,#c4a46a);width:0;transition:width .35s}
+.attribute-list{display:grid;gap:12px}.attribute{display:grid;grid-template-columns:95px 1fr 30px;align-items:center;gap:10px;font-size:15px}.attribute .bar{height:6px}.attribute b{font-family:var(--display);font-size:12px;color:var(--gold2);font-weight:500;text-align:right}
+.quest{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #ffffff12}.quest:last-child{border-bottom:0}.quest input{accent-color:#a98d5b;width:18px;height:18px;margin-top:4px}.quest-main{flex:1;min-width:0}.quest-title{font-size:18px}.quest.done .quest-title{text-decoration:line-through;color:#828879}.quest-meta{font-size:12px;color:var(--muted);margin-top:3px}.tag{font-family:var(--display);font-size:9px;letter-spacing:.12em;border:1px solid #62563e;color:var(--gold2);padding:3px 6px;text-transform:uppercase;white-space:nowrap}
+.nav{display:flex;gap:5px;overflow:auto;padding:15px 0;border-bottom:1px solid #ffffff17;scrollbar-width:none}.nav button{white-space:nowrap;background:transparent;border:1px solid transparent;padding:9px 13px;color:var(--muted);font-family:var(--display);font-size:10px;letter-spacing:.1em}.nav button.active,.nav button:hover{color:var(--gold2);border-color:#6e6045;background:#25291f}
+.view{display:none;padding-top:20px}.view.active{display:block}.map-wrap{position:relative;min-height:490px;border:1px solid #555b48;overflow:hidden;background:linear-gradient(#0d130f66,#111711aa),url('https://images.unsplash.com/photo-1758380424725-4b87a25cc513?auto=format&fit=crop&w=1800&q=82') center/cover}
+.map-wrap:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 20%,#0b100c99 100%);pointer-events:none}
+.map-title{position:absolute;z-index:2;top:18px;left:20px;font-family:var(--display);letter-spacing:.18em;color:#e4d1a6;text-shadow:0 2px 10px #000}
+.map-point{position:absolute;z-index:3;transform:translate(-50%,-50%);border:1px solid #d1b47b;background:#171c17dd;color:#e9d5a7;border-radius:50%;width:47px;height:47px;font-family:var(--display);box-shadow:0 0 0 5px #161d16aa,0 0 25px #c4a36a55;transition:.2s}
+.map-point:hover{transform:translate(-50%,-50%) scale(1.14);background:#655438}.map-point.locked{filter:grayscale(1);opacity:.55;border-color:#777;cursor:not-allowed}
+.map-label{position:absolute;z-index:3;transform:translate(-50%,0);font-family:var(--display);font-size:10px;letter-spacing:.12em;color:#e7ddc4;text-shadow:0 2px 6px #000;white-space:nowrap}
+.region-detail{margin-top:15px;display:grid;grid-template-columns:1fr auto;gap:15px;align-items:center}
+.character-layout{display:grid;grid-template-columns:300px 1fr;gap:18px}.portrait{min-height:390px;background:linear-gradient(0deg,#101510dd,transparent 60%),url('https://images.unsplash.com/photo-1757611933690-3012dff2a62f?auto=format&fit=crop&w=900&q=80') center/cover;border:1px solid #655b43;display:flex;align-items:end;padding:20px}.portrait-name{font-family:var(--display);font-size:22px;color:#f0dfb7;text-shadow:0 2px 8px #000}
+.field{display:grid;gap:6px;margin:12px 0}.field label{font-family:var(--display);font-size:10px;letter-spacing:.12em;color:var(--gold)}.field input,.field textarea,.field select{background:#101510;border:1px solid #414b3e;color:var(--text);padding:10px;width:100%;border-radius:2px}.field textarea{min-height:100px;resize:vertical}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.reward{border:1px solid var(--line);background:#151b15;padding:15px;min-height:130px}.reward .symbol{font-size:25px;color:var(--gold2);margin-bottom:8px}.reward.locked{opacity:.45}
+.journal-entry{border-left:2px solid #8e774c;padding:8px 13px;margin:12px 0;background:#151b15}
+.timer{text-align:center;padding:35px 10px}.timer-number{font-family:var(--display);font-size:64px;color:var(--gold2);letter-spacing:.08em}
+.modal-backdrop{display:none;position:fixed;inset:0;background:#000b;z-index:20;align-items:center;justify-content:center;padding:20px}.modal-backdrop.open{display:flex}.modal{width:min(520px,100%);background:#1b211b;border:1px solid #766443;padding:24px;box-shadow:var(--shadow);max-height:90vh;overflow:auto}
+.toast{position:fixed;bottom:86px;left:50%;transform:translateX(-50%);background:#2a3028;border:1px solid #927b52;padding:11px 18px;z-index:30;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1}
+.bottom-nav{display:none}
+footer{border-top:1px solid #ffffff16;margin-top:35px;padding:20px 0;color:#83877a;font-size:13px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:800px){.app{padding:0 13px 95px}.hero{min-height:280px}.hero-content{padding:30px 24px}.grid{grid-template-columns:1fr}.character-layout{grid-template-columns:1fr}.portrait{min-height:260px}.cards{grid-template-columns:repeat(2,1fr)}.map-wrap{min-height:440px}.top-right .level-text{display:none}}
+@media(max-width:540px){header{height:68px}.brand{font-size:16px}.hero{margin-top:15px}.hero p{font-size:17px}.stat-row{gap:6px}.stat{padding:10px 5px}.stat strong{font-size:19px}.stat span{font-size:10px}.attribute{grid-template-columns:78px 1fr 25px}.nav{display:none}.view{padding-top:13px}.bottom-nav{position:fixed;display:flex;bottom:0;left:0;right:0;z-index:10;background:#111711f5;border-top:1px solid #46503f;padding:7px max(8px,env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));justify-content:space-around;backdrop-filter:blur(12px)}.bottom-nav button{background:none;border:0;color:#96998b;font-size:10px;display:grid;gap:3px;justify-items:center;min-width:45px}.bottom-nav button span{font-size:18px}.bottom-nav button.active{color:var(--gold2)}.map-wrap{min-height:390px}.map-point{width:40px;height:40px}.map-label{font-size:8px}.region-detail{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.timer-number{font-size:48px}footer{font-size:12px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand">THE PATH<small>A JOURNEY THROUGH THE SELF</small></div>
+  <div class="top-right"><span class="level-text">WANDERER · LEVEL <b id="topLevel">1</b></span><button class="icon-btn" id="settingsBtn" aria-label="Settings">⚙</button></div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">The road awaits</div>
+    <h1 id="greeting">Your journey begins.</h1>
+    <p>Beyond the familiar roads lies the person you are becoming. Take the next step, however small.</p>
+    <div class="rule"></div>
+    <button class="btn" onclick="showView('quests')">View today's quests</button>
+  </div>
+</section>
+
+<div class="stat-row">
+  <div class="stat"><strong id="level">1</strong><span>Level</span></div>
+  <div class="stat"><strong id="xp">0</strong><span>Total XP</span></div>
+  <div class="stat"><strong id="completed">0</strong><span>Quests complete</span></div>
+</div>
+<div style="margin:13px 0 22px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;color:var(--muted)"><span id="levelLabel">Next level</span><span id="xpLabel">0 / 100 XP</span></div>
+  <div class="xpbar"><i id="xpBar"></i></div>
+</div>
+
+<nav class="nav" id="desktopNav">
+  <button class="active" data-view="sanctuary">Sanctuary</button><button data-view="world">World map</button><button data-view="quests">Quest board</button><button data-view="character">Character</button><button data-view="chronicle">Chronicle</button><button data-view="inventory">Inventory</button><button data-view="focus">Focus</button>
+</nav>
+
+<main>
+<section class="view active" id="view-sanctuary">
+  <div class="grid">
+    <div class="panel">
+      <div class="panel-head"><h2>Today's Deeds</h2><span class="tag" id="todayTag">DAILY</span></div>
+      <div id="homeQuests"></div>
+      <button class="btn secondary" onclick="showView('quests')">Open quest board →</button>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><h2>Six Attributes</h2><span class="muted tiny">YOUR DEVELOPMENT</span></div>
+      <div class="attribute-list" id="homeAttributes"></div>
+      <p class="muted small" style="margin:17px 0 0">Every meaningful quest can strengthen an attribute. Progress is personal; there is no penalty for taking a rest.</p>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:18px">
+    <div class="panel-head"><h2>The Chronicle</h2><button class="btn ghost" onclick="showView('chronicle')">Write entry</button></div>
+    <p class="muted" id="latestEntry">Your story is waiting to be written.</p>
+  </div>
+</section>
+
+<section class="view" id="view-world">
+  <div class="panel" style="margin-bottom:15px"><div class="eyebrow">The known lands</div><h2 style="margin-top:8px">World of the Path</h2><p class="muted">Choose a region to discover its purpose and the quests held within. Some paths open as your journey advances.</p></div>
+  <div class="map-wrap">
+    <div class="map-title">THE OLD KINGDOMS</div>
+    <button class="map-point" style="left:49%;top:51%" onclick="openRegion('sanctuary')">⌂</button><div class="map-label" style="left:49%;top:57%">SANCTUARY</div>
+    <button class="map-point" style="left:22%;top:28%" onclick="openRegion('wilds')">♧</button><div class="map-label" style="left:22%;top:34%">THE WILDS</div>
+    <button class="map-point" style="left:75%;top:25%" onclick="openRegion('archive')">✧</button><div class="map-label" style="left:75%;top:31%">THE ARCHIVE</div>
+    <button class="map-point" style="left:78%;top:72%" onclick="openRegion('citadel')">♜</button><div class="map-label" style="left:78%;top:78%">THE CITADEL</div>
+    <button class="map-point" style="left:22%;top:76%" onclick="openRegion('veil')">☾</button><div class="map-label" style="left:22%;top:82%">THE VEIL</div>
+    <button class="map-point locked" style="left:50%;top:15%" title="Unlock at level 5" onclick="toast('The northern pass opens at level 5.')">?</button><div class="map-label" style="left:50%;top:21%">THE FORGE · LV 5</div>
+  </div>
+  <div class="panel region-detail" id="regionDetail"><div><h2>The Sanctuary</h2><p class="muted">A quiet refuge at the edge of the old road. Here, every journey begins.</p></div><button class="btn" onclick="showView('quests')">Find a quest</button></div>
+</section>
+
+<section class="view" id="view-quests">
+  <div class="panel">
+    <div class="panel-head"><div><div class="eyebrow">Your calling</div><h2 style="margin-top:7px">Quest Board</h2></div><button class="btn" onclick="openQuestModal()">+ New quest</button></div>
+    <div class="stat-row" style="margin-bottom:16px"><div class="stat"><strong id="questCount">0</strong><span>Available</span></div><div class="stat"><strong id="questDone">0</strong><span>Completed</span></div><div class="stat"><strong id="questStreak">0</strong><span>Day streak</span></div></div>
+    <div id="questList"></div>
+  </div>
+  <div class="panel" style="margin-top:16px">
+    <div class="panel-head"><h2>The First Journey</h2><span class="tag">66 DAYS</span></div>
+    <p class="muted">A guided campaign of small, sustainable steps. Your progress remains yours, even when life interrupts the road.</p>
+    <div class="bar"><i id="campaignBar"></i></div>
+    <div style="display:flex;justify-content:space-between;margin:8px 0 14px;font-size:13px;color:var(--muted)"><span id="campaignDay">Day 1 of 66</span><span id="campaignPct">0%</span></div>
+    <button class="btn secondary" onclick="advanceCampaign()">Mark today's reflection complete</button>
+  </div>
+</section>
+
+<section class="view" id="view-character">
+  <div class="character-layout">
+    <div class="portrait"><div class="portrait-name" id="portraitName">The Wanderer</div></div>
+    <div class="panel">
+      <div class="eyebrow">Your vessel upon the road</div><h2 style="margin-top:8px">Character</h2>
+      <div class="field"><label>CHARACTER NAME</label><input id="charName" maxlength="24" placeholder="The Wanderer"></div>
+      <div class="field"><label>CALLING</label><select id="charCalling"><option>Wayfarer</option><option>Scholar</option><option>Warden</option><option>Seeker</option><option>Artisan</option></select></div>
+      <div class="field"><label>EMBLEM</label><select id="charEmblem"><option>✦ Star</option><option>☾ Moon</option><option>♜ Tower</option><option>♧ Branch</option><option>⚔ Blade</option></select></div>
+      <button class="btn" onclick="saveCharacter()">Save character</button>
+      <div class="rule"></div>
+      <h3>Attributes</h3><div class="attribute-list" id="characterAttributes"></div>
+      <p class="muted small">Attributes grow through quests you complete. You cannot lose attribute progress by missing a day.</p>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-chronicle">
+  <div class="grid">
+    <div class="panel">
+      <div class="eyebrow">Words kept against the dark</div><h2 style="margin-top:8px">The Chronicle</h2>
+      <div class="field"><label>HOW ARE YOU ARRIVING TODAY?</label><select id="mood"><option>Steady</option><option>Hopeful</option><option>Curious</option><option>Overwhelmed</option><option>Low on energy</option><option>Uncertain</option></select></div>
+      <div class="field"><label>YOUR REFLECTION</label><textarea id="journalText" placeholder="What did you learn? What mattered today? What would you like to carry into tomorrow?"></textarea></div>
+      <button class="btn" onclick="saveJournal()">Preserve entry</button>
+    </div>
+    <div class="panel"><div class="panel-head"><h2>Past entries</h2></div><div id="journalList"><p class="muted">No entries yet.</p></div></div>
+  </div>
+</section>
+
+<section class="view" id="view-inventory">
+  <div class="panel"><div class="eyebrow">Keepsakes of the road</div><h2 style="margin-top:8px">Inventory & Achievements</h2><p class="muted">Collect keepsakes by reaching milestones. These are reminders of what you have done, not things you can lose.</p><div class="cards" id="inventoryGrid"></div></div>
+  <div class="panel" style="margin-top:16px"><h2>Titles earned</h2><div id="titlesList" class="muted">Your first title awaits your first five completed quests.</div></div>
+</section>
+
+<section class="view" id="view-focus">
+  <div class="panel timer">
+    <div class="eyebrow">A little time, given fully</div><h2 style="margin-top:8px">The Stillroom</h2>
+    <p class="muted">Choose a focus period. You can pause or stop whenever you need.</p>
+    <div class="timer-number" id="timerDisplay">25:00</div>
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px 0 22px"><button class="btn secondary" onclick="setTimer(15)">15 min</button><button class="btn secondary" onclick="setTimer(25)">25 min</button><button class="btn secondary" onclick="setTimer(45)">45 min</button></div>
+    <button class="btn" id="timerStart" onclick="toggleTimer()">Begin focus</button> <button class="btn ghost" onclick="resetTimer()">Reset</button>
+  </div>
+  <div class="panel" style="margin-top:16px"><h2>Daily intention</h2><div class="field"><label>WHAT DESERVES YOUR ATTENTION?</label><input id="intention" placeholder="One thing I want to give my attention to..."></div><button class="btn secondary" onclick="saveIntention()">Keep intention</button></div>
+</section>
+</main>
+<footer><span>THE PATH · YOUR JOURNEY, YOUR PACE</span><span>Artwork: Gianluca Giarda & Valentin Zickner / Unsplash</span></footer>
+</div>
+
+<div class="bottom-nav" id="mobileNav">
+  <button class="active" data-view="sanctuary"><span>⌂</span>Home</button><button data-view="world"><span>◈</span>World</button><button data-view="quests"><span>☷</span>Quests</button><button data-view="character"><span>♙</span>Self</button><button data-view="chronicle"><span>▤</span>Journal</button><button data-view="focus"><span>◷</span>Focus</button>
+</div>
+<div class="modal-backdrop" id="questModal"><div class="modal">
+  <div class="panel-head"><h2>Write a quest</h2><button class="icon-btn" onclick="closeQuestModal()">×</button></div>
+  <div class="field"><label>QUEST NAME</label><input id="newQuestName" maxlength="70" placeholder="A small step along the road"></div>
+  <div class="field"><label>REGION / ATTRIBUTE</label><select id="newQuestAttr"><option>Vigor</option><option>Mind</option><option>Discipline</option><option>Wisdom</option><option>Order</option><option>Spirit</option></select></div>
+  <div class="field"><label>DIFFICULTY</label><select id="newQuestDiff"><option value="10">Small · 10 XP</option><option value="20" selected>Steady · 20 XP</option><option value="35">Demanding · 35 XP</option></select></div>
+  <button class="btn" onclick="addQuest()">Add to quest board</button>
+</div></div>
+<div class="modal-backdrop" id="settingsModal"><div class="modal">
+  <div class="panel-head"><h2>Settings</h2><button class="icon-btn" onclick="closeSettings()">×</button></div>
+  <p class="muted">Your journey is saved locally in this browser on this device.</p>
+  <h3>Notifications & reminders</h3>
+  <p class="small muted">This version can show browser notifications while the app is open. Reliable scheduled push notifications while the app is closed need a separate push service and setup; they are not enabled by this ZIP alone.</p>
+  <div class="field"><label>REMINDER TYPE</label><select id="reminderType"><option value="morning">Morning reminder</option><option value="evening">Evening reflection</option><option value="quests">Quest check-in</option></select></div>
+  <div class="field"><label>REMINDER TIME</label><input type="time" id="reminderTime" value="08:00"></div>
+  <button class="btn" onclick="enableNotifications()">Allow notifications</button>
+  <p class="tiny muted" id="notificationStatus">Notifications are off.</p>
+  <div class="rule"></div>
+  <button class="btn danger" onclick="resetProgress()">Reset all local progress</button>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const ATTRS=["Vigor","Mind","Discipline","Wisdom","Order","Spirit"];
+const ATTR_DESC={Vigor:"Care for your body, rest, and movement.",Mind:"Emotional awareness and self-understanding.",Discipline:"Commitments and following through.",Wisdom:"Learning, reading, and developing skills.",Order:"Organization and caring for your surroundings.",Spirit:"Meaning, creativity, and connection."};
+const DEFAULT_QUESTS=[
+ {id:"q1",name:"Make your bed or reset your space",attr:"Order",xp:10,done:false,type:"Daily"},
+ {id:"q2",name:"Spend a little time moving",attr:"Vigor",xp:10,done:false,type:"Daily"},
+ {id:"q3",name:"Read or study something",attr:"Wisdom",xp:15,done:false,type:"Daily"},
+ {id:"q4",name:"Take a quiet moment to check in",attr:"Mind",xp:10,done:false,type:"Daily"},
+ {id:"q5",name:"Give attention to one important task",attr:"Discipline",xp:15,done:false,type:"Daily"},
+ {id:"q6",name:"Make time for something meaningful",attr:"Spirit",xp:10,done:false,type:"Daily"}
+];
+const fresh=()=>({xp:0,completed:0,attrs:{Vigor:0,Mind:0,Discipline:0,Wisdom:0,Order:0,Spirit:0},quests:structuredClone(DEFAULT_QUESTS),character:{name:"The Wanderer",calling:"Wayfarer",emblem:"✦ Star"},journals:[],campaignDay:1,intention:"",reminder:null,completedIds:[],unlocked:[]});
+let state;try{state=JSON.parse(localStorage.getItem("thePathV2"))||fresh()}catch(e){state=fresh()}
+function save(){localStorage.setItem("thePathV2",JSON.stringify(state))}
+function level(){return Math.floor(state.xp/100)+1}
+function xpInto(){return state.xp%100}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2400)}
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function render(){
+ const lvl=level();document.getElementById("level").textContent=lvl;document.getElementById("topLevel").textContent=lvl;document.getElementById("xp").textContent=state.xp;document.getElementById("completed").textContent=state.completed;
+ document.getElementById("xpLabel").textContent=xpInto()+" / 100 XP";document.getElementById("xpBar").style.width=xpInto()+"%";document.getElementById("levelLabel").textContent="Level "+lvl+" · "+(100-xpInto())+" XP to next level";
+ document.getElementById("greeting").textContent=state.character.name==="The Wanderer"?"Your journey begins.":"Welcome back, "+state.character.name+".";
+ document.getElementById("homeQuests").innerHTML=state.quests.filter(q=>!q.done).slice(0,4).map(q=>questHTML(q,true)).join("")||'<p class="muted">All available quests are complete. Rest, or add a new deed.</p>';
+ document.getElementById("questList").innerHTML=state.quests.map(q=>questHTML(q,false)).join("")||'<p class="muted">No quests yet. Add one to begin.</p>';
+ document.getElementById("questCount").textContent=state.quests.filter(q=>!q.done).length;document.getElementById("questDone").textContent=state.completed;
+ document.getElementById("questStreak").textContent=Math.min(state.completed,7);
+ const campaign=Math.min(66,state.campaignDay);document.getElementById("campaignDay").textContent="Day "+campaign+" of 66";document.getElementById("campaignPct").textContent=Math.round(campaign/66*100)+"%";document.getElementById("campaignBar").style.width=campaign/66*100+"%";
+ const attrHTML=ATTRS.map(a=>`<div class="attribute"><span>${a}</span><div class="bar"><i style="width:${Math.min(100,state.attrs[a])}%"></i></div><b>${state.attrs[a]}</b></div>`).join("");
+ document.getElementById("homeAttributes").innerHTML=attrHTML;document.getElementById("characterAttributes").innerHTML=attrHTML;
+ document.getElementById("portraitName").textContent=state.character.emblem.split(" ")[0]+" "+state.character.name;document.getElementById("charName").value=state.character.name;document.getElementById("charCalling").value=state.character.calling;document.getElementById("charEmblem").value=state.character.emblem;
+ document.getElementById("journalList").innerHTML=state.journals.length?state.journals.slice().reverse().map(j=>`<div class="journal-entry"><div class="tiny muted">${safe(j.date)} · ${safe(j.mood)}</div><div>${safe(j.text)}</div></div>`).join(""):'<p class="muted">No entries yet.</p>';
+ document.getElementById("latestEntry").textContent=state.journals.length?state.journals[state.journals.length-1].text:"Your story is waiting to be written.";
+ const items=[["First Footsteps","✦","Complete your first quest",state.completed>=1],["A Handful of Deeds","⚑","Complete five quests",state.completed>=5],["The Steady Road","⌛","Complete ten quests",state.completed>=10],["Scholar's Mark","✧","Gain 50 Wisdom",state.attrs.Wisdom>=50],["Keeper of Order","⌂","Gain 50 Order",state.attrs.Order>=50],["The Long Ascent","♜","Reach level 5",lvl>=5]];
+ document.getElementById("inventoryGrid").innerHTML=items.map(i=>`<div class="reward ${i[3]?"":"locked"}"><div class="symbol">${i[1]}</div><h3>${i[0]}</h3><div class="small muted">${i[2]}</div><div class="tiny" style="color:var(--gold);margin-top:9px">${i[3]?"UNLOCKED":"LOCKED"}</div></div>`).join("");
+ document.getElementById("titlesList").textContent=state.completed>=5?"The Steadfast · earned after five completed quests.":"Complete five quests to earn your first title: The Steadfast.";
+ document.getElementById("intention").value=state.intention||"";
+}
+function questHTML(q,compact){return `<div class="quest ${q.done?"done":""}"><input type="checkbox" ${q.done?"checked":""} aria-label="Complete ${safe(q.name)}" onchange="toggleQuest('${q.id}')"><div class="quest-main"><div class="quest-title">${safe(q.name)}</div><div class="quest-meta">${safe(q.attr)} · ${q.xp} XP · ${q.type||"Personal"}</div></div>${!compact?`<span class="tag">${q.done?"DONE":"OPEN"}</span>`:""}</div>`}
+function toggleQuest(id){const q=state.quests.find(x=>x.id===id);if(!q)return;if(q.done){q.done=false;state.xp=Math.max(0,state.xp-q.xp);state.completed=Math.max(0,state.completed-1);state.attrs[q.attr]=Math.max(0,state.attrs[q.attr]-q.xp);toast("Quest reopened. Its reward was returned.");}else{q.done=true;state.xp+=q.xp;state.completed++;state.attrs[q.attr]=Math.min(100,state.attrs[q.attr]+q.xp);toast("Quest complete. +"+q.xp+" XP · "+q.attr+" strengthened.");if(level()>1)state.unlocked.push("level"+level());}save();render()}
+function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id==="view-"+name));document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
+function openRegion(id){const data={sanctuary:["The Sanctuary","A quiet refuge at the edge of the old road. Rest, plan, and choose your next deed."],wilds:["The Wilds","A living wilderness. Let this region remind you to care for your body, seek fresh air, and make room for movement."],archive:["The Archive","A library of forgotten knowledge. Study, read, practice, and follow your curiosity."],citadel:["The Citadel","A fortress built one stone at a time. Strengthen your routines, responsibilities, and sense of order."],veil:["The Veil","A quiet place for reflection. Make space for mindfulness, creativity, and connection."]};const d=data[id];document.getElementById("regionDetail").innerHTML=`<div><div class="eyebrow">Region discovered</div><h2 style="margin-top:7px">${d[0]}</h2><p class="muted">${d[1]}</p></div><button class="btn" onclick="showView('quests')">Find a quest</button>`}
+function openQuestModal(){document.getElementById("questModal").classList.add("open");document.getElementById("newQuestName").focus()}function closeQuestModal(){document.getElementById("questModal").classList.remove("open")}
+function addQuest(){const name=document.getElementById("newQuestName").value.trim();if(!name){toast("Give your quest a name first.");return}state.quests.push({id:"q"+Date.now(),name,attr:document.getElementById("newQuestAttr").value,xp:+document.getElementById("newQuestDiff").value,done:false,type:"Personal"});save();render();closeQuestModal();document.getElementById("newQuestName").value="";toast("A new quest has been added.")}
+function saveCharacter(){state.character={name:document.getElementById("charName").value.trim()||"The Wanderer",calling:document.getElementById("charCalling").value,emblem:document.getElementById("charEmblem").value};save();render();toast("Character updated.")}
+function saveJournal(){const text=document.getElementById("journalText").value.trim();if(!text){toast("Write a few words before preserving your entry.");return}state.journals.push({date:new Date().toLocaleDateString(),mood:document.getElementById("mood").value,text});document.getElementById("journalText").value="";save();render();toast("Your words are preserved in the Chronicle.");}
+function advanceCampaign(){if(state.campaignDay<66){state.campaignDay++;save();render();toast("Campaign reflection recorded. Day "+state.campaignDay+".")}else toast("You have completed the First Journey.")}
+function saveIntention(){state.intention=document.getElementById("intention").value;save();toast("Your intention has been kept.")}
+function openSettings(){document.getElementById("settingsModal").classList.add("open")}function closeSettings(){document.getElementById("settingsModal").classList.remove("open")}document.getElementById("settingsBtn").onclick=openSettings;
+async function enableNotifications(){if(!("Notification"in window)){document.getElementById("notificationStatus").textContent="Notifications are not supported in this browser.";return}const permission=await Notification.requestPermission();if(permission!=="granted"){document.getElementById("notificationStatus").textContent="Permission was not granted.";return}state.reminder={type:document.getElementById("reminderType").value,time:document.getElementById("reminderTime").value};save();document.getElementById("notificationStatus").textContent="Permission granted. Reminder checks run while this app is open.";scheduleReminder();toast("Browser notifications allowed.");}
+let reminderTimer=null;function scheduleReminder(){if(reminderTimer)clearTimeout(reminderTimer);if(!state.reminder||Notification.permission!=="granted")return;const [h,m]=state.reminder.time.split(":").map(Number),now=new Date(),next=new Date();next.setHours(h,m,0,0);if(next<=now)next.setDate(next.getDate()+1);reminderTimer=setTimeout(()=>{const messages={morning:["The road awaits","Choose one small step for today."],evening:["The day draws to a close","Take a moment to reflect in your Chronicle."],quests:["A note from the Herald","Your quest board is waiting when you are ready."]};const msg=messages[state.reminder.type];if("serviceWorker"in navigator&&navigator.serviceWorker.controller){navigator.serviceWorker.ready.then(r=>r.showNotification(msg[0],{body:msg[1],icon:"icon.svg",tag:"the-path-reminder"})).catch(()=>new Notification(msg[0],{body:msg[1]}));}else new Notification(msg[0],{body:msg[1]});scheduleReminder();},Math.max(1000,next-now));}
+function setTimer(min){timerRemaining=min*60;updateTimer();}let timerRemaining=1500,timerInterval=null;function updateTimer(){document.getElementById("timerDisplay").textContent=String(Math.floor(timerRemaining/60)).padStart(2,"0")+":"+String(timerRemaining%60).padStart(2,"0")}
+function toggleTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null;document.getElementById("timerStart").textContent="Resume focus";return}document.getElementById("timerStart").textContent="Pause";timerInterval=setInterval(()=>{timerRemaining--;updateTimer();if(timerRemaining<=0){clearInterval(timerInterval);timerInterval=null;document.getElementById("timerStart").textContent="Begin focus";toast("Focus session complete. Well done.");if("Notification"in window&&Notification.permission==="granted")new Notification("Focus complete",{body:"Your time was well spent."});}},1000)}
+function resetTimer(){clearInterval(timerInterval);timerInterval=null;timerRemaining=1500;updateTimer();document.getElementById("timerStart").textContent="Begin focus"}
+function resetProgress(){if(!confirm("Reset all The Path progress saved in this browser? This cannot be undone."))return;state=fresh();save();render();closeSettings();toast("A new journey begins.");}
+if("serviceWorker"in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}
+render();if(state.reminder&&"Notification"in window&&Notification.permission==="granted"){document.getElementById("notificationStatus").textContent="Reminder saved: "+state.reminder.time+" (while app is open).";scheduleReminder()}
+</script>
+</body>
+</html>
